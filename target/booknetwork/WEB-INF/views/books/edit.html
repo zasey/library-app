@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование книги</title>
+</head>
+<body>
+  <form th:method="POST" th:action="@{/books/{id}/edit(id=${book.getBookId()})}" th:object="${book}">
+    <label for="title">Название:</label>
+    <input type="text" th:field="*{title}" name="title" id="title" />
+    <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" >Title error message</div>
+    <label for="author">Автор:</label>
+    <input type="text" th:field="*{author}" name="author" id="author" />
+    <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}" >Author error message</div>
+    <label for="year">Год:</label>
+    <input type="text" th:field="*{year}" name="year" id="year" />
+    <div style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}" >Year error message</div>
+    <br>
+    <hr>
+    <input type="submit" value="Сохранить" />
+  </form>
+  <br>
+
+  <a th:href="@{/books/{id}(id=${book.getBookId()})}">Отмена</a>
+</body>
+</html>
